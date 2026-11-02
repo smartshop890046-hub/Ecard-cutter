@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online ID card cropper. Crop, merge front and back, download and print ID cards. Images are processed in your browser.">
+  <title>E-Card Cutter — Free ID Card Crop & Print Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="E-Card Cutter home"><span class="brand-mark">▣</span><span>E-Card <b>Cutter</b></span></a>
+    <nav class="nav">
+      <a href="#home">⌂ <span>Home</span></a>
+      <a href="#tools">▦ <span>Tools</span></a>
+      <a href="#about">ⓘ <span>About Us</span></a>
+      <a href="#contact">✉ <span>Contact</span></a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> FREE ONLINE ID CARD TOOLS</span>
+        <h1>Crop. Align. <span>Print.</span></h1>
+        <p>Fast, simple and secure ID card tools. Crop your card to the right size and download or print in seconds.</p>
+        <a class="primary-btn" href="#tools">Explore ID Tools <span>→</span></a>
+        <div class="trust"><span>✓</span> Free to use <span>•</span> No signup <span>•</span> Images stay on your device</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-card art-back"><div class="mini-line"></div><div class="mini-line short"></div><div class="mini-chip"></div><div class="mini-code"></div></div>
+        <div class="art-card art-front"><div class="art-photo">●</div><div class="art-lines"><i></i><i></i><i></i></div><div class="art-qr"></div><div class="art-label">IDENTITY CARD</div></div>
+        <div class="floating-badge">✂ <b>Easy crop</b></div>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-heading"><div><span class="eyebrow">OUR SERVICES</span><h2>Choose Your ID Card Tool</h2><p>Select a tool to upload, crop and print your card.</p></div><div class="search-wrap"><span>⌕</span><input id="searchTools" type="search" placeholder="Search ID tools…" aria-label="Search ID tools"></div></div>
+      <div class="tools-grid" id="toolsGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>No tools found. Try another search.</p>
+    </section>
+
+    <section class="how-section" id="about">
+      <div class="section-heading centered"><span class="eyebrow">HOW IT WORKS</span><h2>Three simple steps</h2><p>No complicated software. Everything works right in your browser.</p></div>
+      <div class="steps"><article><span class="step-number">01</span><div class="step-icon">⇧</div><h3>Upload your card</h3><p>Choose an image from your device. JPG, PNG and WebP are supported.</p></article><article><span class="step-number">02</span><div class="step-icon">✂</div><h3>Crop & adjust</h3><p>Move and resize the crop area to fit your card perfectly.</p></article><article><span class="step-number">03</span><div class="step-icon">⇩</div><h3>Download or print</h3><p>Save a clean PNG image or print it directly from your browser.</p></article></div>
+    </section>
+  </main>
+
+  <footer id="contact"><div class="footer-brand"><span class="brand-mark">▣</span> E-Card Cutter</div><p>Simple, free ID card tools for everyone.</p><div class="footer-bottom">© <span id="year"></span> E-Card Cutter. All rights reserved. <span>Privacy-friendly: your images are processed locally.</span></div></footer>
+
+  <div class="modal" id="editorModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+    <div class="modal-panel">
+      <div class="modal-header"><div><span class="eyebrow">ID CARD WORKSPACE</span><h2 id="editorTitle">Aadhaar Crop</h2></div><button class="icon-btn" id="closeModal" aria-label="Close editor">×</button></div>
+      <div class="editor-layout">
+        <div class="editor-main">
+          <div class="upload-zone" id="uploadZone"><div class="upload-icon">⇧</div><h3>Upload your ID card image</h3><p>Drag & drop an image here, or click to browse</p><button class="primary-btn small" id="browseBtn">Choose image</button><small>JPG, PNG or WebP · Image remains on your device</small><input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" hidden></div>
+          <div class="crop-stage" id="cropStage" hidden><img id="cropImage" alt="Uploaded ID card to crop"></div>
+          <div class="merge-upload" id="mergeUpload" hidden><label class="file-label">Front side <input type="file" id="frontInput" accept="image/*"></label><label class="file-label">Back side <input type="file" id="backInput" accept="image/*"></label><p class="hint">Choose both sides. They will be combined side-by-side on one canvas.</p><div class="merge-preview" id="mergePreview"></div></div>
+        </div>
+        <aside class="editor-sidebar"><h3>Crop settings</h3><label class="field-label" for="aspectSelect">Crop ratio</label><select id="aspectSelect"><option value="free">Free selection</option><option value="1.586">ID card (85.6 × 54 mm)</option><option value="1.42">PAN card (approx.)</option><option value="1">Square</option><option value="1.7777778">16:9</option></select><label class="field-label" for="outputWidth">Output width (px)</label><input id="outputWidth" type="number" min="100" max="6000" value="1011"><label class="field-label" for="outputHeight">Output height (px)</label><input id="outputHeight" type="number" min="100" max="6000" value="638"><div class="sidebar-note">Tip: You can change the crop area by dragging its edges. Output dimensions control the saved image quality.</div><div class="editor-actions"><button class="secondary-btn" id="resetCrop">Reset</button><button class="primary-btn" id="downloadBtn" disabled>Download PNG ↓</button><button class="secondary-btn full" id="printBtn" disabled>Print card</button></div></aside>
+      </div>
+      <div class="modal-footer"><span id="statusText">Select an image to begin.</span><button class="text-btn" id="clearImage">Clear image</button></div>
+    </div>
+  </div>
+  <canvas id="workCanvas" hidden></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
